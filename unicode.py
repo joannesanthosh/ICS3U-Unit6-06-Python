@@ -5,13 +5,10 @@
 # This program converts a string to unicode
 
 
-def main():
-    # this function uses an associative array
+def convert_string_to_hexadecimal(string: str) -> str:
+    # This function converts string to hexadecimal
 
-    dictionary = {}
-    some_info = {'item1': 1,
-                 'item2': 2,
-    }
+    dictionary = ""
 
     # Adding Items
     dictionary[" "] = "0x20"
@@ -108,13 +105,30 @@ def main():
     dictionary["}"] = "0x7d"
     dictionary["~"] = "0x7e"
 
+    for single_character in string:
+        if single_character in unicode_string:
+            dictionary += unicode_string[single_character]
+        else:
+            hexadecimal_string = "-1"
+            break
 
-    user_input = input("Type in a string of words: ")
-    if user_input in dictionary.keys():
-        print("The words in hexadecimal is {0}.".format(user_input[dictionary]))
-    else:
-        print("This string can not be converted to hexadecimal.")
+    return hexadecimal_string
+
+
+def main():
+    # This function takes input and prints output
+
+    string = input("Please enter a string to convert to hex: ")
+
+    converted = convert_string_to_hexadecimal(string)
     print("")
+
+    if converted == "-1":
+        print("Invalid Input.")
+    else:
+        print("" + string + " in hex is [" + converted + "]")
+
+    print("\nDone.")
 
 
 if __name__ == "__main__":
